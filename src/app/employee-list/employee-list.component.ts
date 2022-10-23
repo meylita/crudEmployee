@@ -13,16 +13,15 @@ import { EmployeeServiceService } from '../service/employee-service.service';
 export class EmployeeListComponent implements OnInit {
 
   public employeeList: any = []
-
+  public paginateData: any
   public total: number;
 
   public currentPage: any = 1 /* Current page Active */
-  public data: any = { totalItems: 0, itemsPerPage: 0 }
   public totalItems: any;
   public itemsPerPage: any = 10
 
-  public page: any;
-  public searchEmployee: any;
+  public searchEmployee: any = ''
+  public employeeSelected: any;
 
   constructor(
     private employeeService: EmployeeServiceService,
@@ -36,13 +35,14 @@ export class EmployeeListComponent implements OnInit {
 
   getEmployees() {
     let param = {
-      search: this.searchEmployee
+      username: this.searchEmployee
     }
     this.employeeService.getEmployees(param)
-      .subscribe(data => {
-        console.log(data, 'data employees');
+      .subscribe((data: any) => {
         this.totalItems = data.length;
         this.employeeList = data
+        localStorage.setItem('employeeList', JSON.stringify(data))
+        this.pageChanged()
       });
   }
 
@@ -53,22 +53,24 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(id: number) {
     this.employeeService.deleteEmployee(id).subscribe(x=> {
       this.toastr.success('Delete Success', 'Success');
-
       this.getEmployees()
     });
   }
 
 
   pageChanged() {
-    // this.page = this.currentPage - 1
-    this.employeeList = this.employeeList.slice((this.currentPage - 1) * this.itemsPerPage, (this.currentPage - 1) * this.itemsPerPage + this.itemsPerPage);
+    this.employeeList = JSON.parse(localStorage.getItem('employeeList') || '{}').map((data:any, i:any) => ({id: i+1, ...data})).slice((this.currentPage - 1) * this.itemsPerPage, (this.currentPage - 1) * this.itemsPerPage + this.itemsPerPage);
   }
 
   search(event: any) {
     this.searchEmployee = event
-    this.page = 1
-
+    this.currentPage = 1
     this.getEmployees()
+  }
+
+  selectedEmployee(id: number) {
+    this.employeeSelected = id
+    this.router.navigate(['employee-detail', id]);
   }
 
 }

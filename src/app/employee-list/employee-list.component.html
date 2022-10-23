@@ -23,8 +23,8 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let item of employeeList">
-                    <tr>
+                <tbody class="list" *ngFor="let item of employeeList">
+                    <tr [class.active]="employeeSelected == item.id" (click)="selectedEmployee(item.id)">
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src="assets/default/avatar.png" alt="" style="width: 45px; height: 45px"

@@ -1,1 +1,45 @@
-<p>employee-detail works!</p>
+<div class="container mx-5 my-5">
+    <div class="card" style="width: 30rem;" *ngIf="dataEmployee">
+        <div class="card-body">
+            <h5 class="card-title">Employee Detail</h5>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Username :
+              <span>{{dataEmployee.username}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                First Name :
+              <span>{{dataEmployee.firstName}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Last Name :
+              <span>{{dataEmployee.lastName}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Email :
+              <span>{{dataEmployee.email}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Birth Date :
+              <span>{{dataEmployee.birthDate}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Basic Salary :
+              <span>Rp {{dataEmployee.basicSalary | number}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Status :
+              <span>{{dataEmployee.status}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Group :
+              <span>{{dataEmployee.group}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Description :
+              <span>{{dataEmployee.description}}</span>
+            </li>
+          </ul>
+    </div>
+</div>

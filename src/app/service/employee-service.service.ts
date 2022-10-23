@@ -16,11 +16,16 @@ export class EmployeeServiceService {
   constructor(private http: HttpClient) { }
 
   getEmployees(params? : any){
-    const param = [];
-    param.push('username=' + params.search);  
-    let collectParam = '/?' + param.join('&')
+    const url = `${this.employeesUrl}`; 
+    let params_str = '';
+    for (let key of Object.keys(params)) {
+      params_str += `${key}=${params[key]}&`;
+    }
 
-    return this.http.get<any>(`${this.employeesUrl}/?username=${params}`)
+    console.log(url, params_str, 'param');
+    console.log(`${url}?${params_str}`, 'return');
+    
+     return this.http.get<any>(`${url}?${params_str}`);
   }
 
   /** GET employee by id. Will 404 if id not found */
