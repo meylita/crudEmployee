@@ -1,0 +1,105 @@
+<form [formGroup]="formEmployee" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <div class="form-outline mb-4">
+              <label>Username</label>
+              <input type="text" formControlName="username" placeholder="Username"
+                class="form-control form-control-lg" />
+              <div *ngIf="validation && p.username.errors" class="alert">
+                <div *ngIf="p.username.errors.required">Username is required</div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label>First Name</label>
+              <input type="text" formControlName="firstName" placeholder="First Name"
+                class="form-control form-control-lg" />
+              <div *ngIf="validation && p.firstName.errors" class="alert">
+                <div *ngIf="p.firstName.errors.required">First Name is required</div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label>Last Name</label>
+              <input type="text" formControlName="lastName" placeholder="Last Name"
+                class="form-control form-control-lg" />
+              <div *ngIf="validation && p.lastName.errors" class="alert">
+                <div *ngIf="p.lastName.errors.required">Last Name is required</div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label>Email</label>
+              <input type="email" formControlName="email" placeholder="Email" class="form-control form-control-lg" />
+              <div *ngIf="validation && p.email.errors" class="alert">
+                <div *ngIf="p.email.errors.required">Email is required</div>
+                <div *ngIf="p.email.errors.email">Email must be a valid email address</div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label>Birth Date</label>
+              <div class="form-group mt-1">
+                <div class="input-group my-2">
+                  <span class="input-group-text bg-transparent"><i class="far fa-calendar"></i></span>
+                  <input type="text" formControlName="birthDate" [maxDate]="maxStartDate"  class="form-control form-control-lg"
+                    placeholder="DD-MM-YYYY"  ngbDatepicker #startDatePicker="ngbDatepicker"
+                    (click)="startDatePicker.toggle()" />
+                 
+                </div>
+                <div *ngIf="validation && p.birthDate.errors" class="alert">
+                  <div *ngIf="p.birthDate.errors.required">Birth Date is required</div>
+                </div>
+              </div>
+              <!-- <input type="text" formControlName="birthDate" placeholder="Birth Date"
+                class="form-control form-control-lg" /> -->
+
+            </div>
+            <div class="form-outline mb-4">
+              <label>Basic Salary</label>
+              <input type="number" formControlName="basicSalary" placeholder="Basic Salary"
+                class="form-control form-control-lg" />
+              <div *ngIf="validation && p.basicSalary.errors" class="alert">
+                <div *ngIf="p.basicSalary.errors.required">Basic Salary is required</div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label>Status</label>
+              <input type="text" formControlName="status" placeholder="Status" class="form-control form-control-lg" />
+              <div *ngIf="validation && p.status.errors" class="alert">
+                <div *ngIf="p.status.errors.required">Status is required</div>
+              </div>
+            </div>
+            <div class=" mb-4">
+              <label>Group</label>
+              <ng-select [items]="groupOption" bindLabel="name" placeholder="Select Group" formControlName="group">
+              </ng-select>
+              <!-- <input type="text" formControlName="group" placeholder="Group" class="form-control form-control-lg" /> -->
+              <div *ngIf="validation && p.group.errors" class="alert">
+                <div *ngIf="p.group.errors.required">Group is required</div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label>Description</label>
+
+              <div class="form-group mt-1">
+                <div class="input-group my-2">
+                  <span class="input-group-text bg-transparent"><i class="far fa-calendar"></i></span>
+                  <input type="text" formControlName="description" class="form-control form-control-lg"
+                  placeholder="DD-MM-YYYY" ngbDatepicker #descriptionDatePicker="ngbDatepicker"
+                  (click)="descriptionDatePicker.toggle()" />
+                   
+                </div>
+                <div *ngIf="validation && p.description.errors" class="alert">
+                  <div *ngIf="p.description.errors.required">Description is required</div>
+                </div>
+              </div>
+
+
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="save()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
