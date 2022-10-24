@@ -80,5 +80,8 @@ export class EmployeeCreateComponent implements OnInit {
 
   }
 
+  back() {
+    this.router.navigate(['employee-list']);
+  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeServiceService } from '../service/employee-service.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class EmployeeDetailComponent implements OnInit {
 
   constructor(
     public activeRouter: ActivatedRoute,
+    public router:Router,
     private employeeService: EmployeeServiceService
   ) { }
 
@@ -23,6 +24,10 @@ export class EmployeeDetailComponent implements OnInit {
     .subscribe(data => {
       this.dataEmployee = data
     });
+  }
+
+  back() {
+    this.router.navigate(['employee-list']);
   }
 
 }

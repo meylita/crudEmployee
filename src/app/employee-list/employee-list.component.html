@@ -1,60 +1,64 @@
-<div class="mx-5 my-5">
+<div class="px-5 py-5" style="background-color: #aebeda;">
     <div class="row">
         <div class="col-md-12">
             <h2 class="mb-4">Employee List</h2>
             <div class="d-flex justify-content-between mb-4">
                 <form class="form-inline">
-                    <input #searchEmployee (input)="search(searchEmployee.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  </form>
-                <button type="button" class="btn btn-link btn-sm btn-rounded"  [routerLink]="'/employee-create/'">
+                    <input #searchEmployee (input)="search(searchEmployee.value)" class="form-control mr-sm-2"
+                        type="search" placeholder="Search" aria-label="Search">
+                </form>
+                <button type="button" class="btn btn-light" [routerLink]="'/employee-create/'">
                     <i class="fas fa-plus-circle text-primary"> Add</i>
                 </button>
             </div>
-           
-            <table class="table align-middle mb-0 bg-white">
-                <thead class="bg-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Birth Date</th>
-                        <th>Basic Salary</th>
-                        <th>Status</th>
-                        <th>Group</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="list" *ngFor="let item of employeeList">
-                    <tr [class.active]="employeeSelected == item.id" (click)="selectedEmployee(item.id)">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="assets/default/avatar.png" alt="" style="width: 45px; height: 45px"
-                                    class="rounded-circle" />
-                                <div class="ms-3">
-                                    <p class="fw-bold mb-1 titlecase">{{item.firstName}} {{item.lastName}}</p>
-                                    <p class="text-muted mb-0">{{item.email}}</p>
+            <div style="height: 46rem;">
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Birth Date</th>
+                            <th>Basic Salary</th>
+                            <th>Status</th>
+                            <th>Group</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list" *ngFor="let item of employeeList">
+                        <tr [class.active]="employeeSelected == item.id" (click)="selectedEmployee(item.id)">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/default/avatar.png" alt="" style="width: 45px; height: 45px"
+                                        class="rounded-circle" />
+                                    <div class="ms-3">
+                                        <p class="fw-bold mb-1 titlecase">{{item.firstName}} {{item.lastName}}</p>
+                                        <p class="text-muted mb-0">{{item.email}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>@{{item.username}}</td>
-                        <td>{{item.birthDate}}</td>
-                        <td>{{item.basicSalary | number}}</td>
-                        <td>{{item.status}}</td>
-                        <td>{{item.group}}</td>
-                        <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="editEmployee(item.id)">
-                                <i class="fas fa-pencil-alt text-success"> Edit</i>
-                            </button>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="deleteEmployee(item.id)">
-                                <i class="fas fa-trash-alt text-danger"> Delete</i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td>@{{item.username}}</td>
+                            <td>{{item.birthDate}}</td>
+                            <td>{{item.basicSalary | number}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.group}}</td>
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded"
+                                    (click)="editEmployee(item.id)">
+                                    <i class="fas fa-pencil-alt text-success"> Edit</i>
+                                </button>
+                                <button type="button" class="btn btn-link btn-sm btn-rounded"
+                                    (click)="deleteEmployee(item.id)">
+                                    <i class="fas fa-trash-alt text-danger"> Delete</i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="d-flex align-items-center justify-content-between mt-2">
-                <div class="fs-small fw-400 txt-muted">Total {{totalItems}} of Data</div>
+                <div class="fs-small fw-400 txt-muted">Showing {{dataPaginationperPage}} of {{totalItems}} Data</div>
                 <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage"
-                   [(page)]="currentPage" (pageChange)="pageChanged()" aria-label="Default pagination">
+                    [(page)]="currentPage" (pageChange)="pageChanged()" aria-label="Default pagination">
                 </ngb-pagination>
             </div>
         </div>

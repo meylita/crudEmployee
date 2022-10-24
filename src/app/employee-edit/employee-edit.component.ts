@@ -89,6 +89,10 @@ export class EmployeeEditComponent implements OnInit {
         });
     }
   }
+
+  back() {
+    this.router.navigate(['employee-list']);
+  }
 }
 
 export interface employeeInterface {

@@ -1,105 +1,123 @@
-<form [formGroup]="formEmployee" >
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-            <div class="form-outline mb-4">
-              <label>Username</label>
-              <input type="text" formControlName="username" placeholder="Username"
-                class="form-control form-control-lg" />
-              <div *ngIf="validation && p.username.errors" class="alert">
-                <div *ngIf="p.username.errors.required">Username is required</div>
-              </div>
+<form [formGroup]="formEmployee">
+  <section style="background-color: #aebeda;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-header text-center p-3">
+              <h5 class="card-title">Employee Create</h5>
             </div>
-            <div class="form-outline mb-4">
-              <label>First Name</label>
-              <input type="text" formControlName="firstName" placeholder="First Name"
-                class="form-control form-control-lg" />
-              <div *ngIf="validation && p.firstName.errors" class="alert">
-                <div *ngIf="p.firstName.errors.required">First Name is required</div>
-              </div>
-            </div>
-            <div class="form-outline mb-4">
-              <label>Last Name</label>
-              <input type="text" formControlName="lastName" placeholder="Last Name"
-                class="form-control form-control-lg" />
-              <div *ngIf="validation && p.lastName.errors" class="alert">
-                <div *ngIf="p.lastName.errors.required">Last Name is required</div>
-              </div>
-            </div>
-            <div class="form-outline mb-4">
-              <label>Email</label>
-              <input type="email" formControlName="email" placeholder="Email" class="form-control form-control-lg" />
-              <div *ngIf="validation && p.email.errors" class="alert">
-                <div *ngIf="p.email.errors.required">Email is required</div>
-                <div *ngIf="p.email.errors.email">Email must be a valid email address</div>
-              </div>
-            </div>
-            <div class="form-outline mb-4">
-              <label>Birth Date</label>
-              <div class="form-group mt-1">
-                <div class="input-group my-2">
-                  <span class="input-group-text bg-transparent"><i class="far fa-calendar"></i></span>
-                  <input type="text" formControlName="birthDate" [maxDate]="maxStartDate"  class="form-control form-control-lg"
-                    placeholder="DD-MM-YYYY"  ngbDatepicker #startDatePicker="ngbDatepicker"
-                    (click)="startDatePicker.toggle()" />
-                 
-                </div>
-                <div *ngIf="validation && p.birthDate.errors" class="alert">
-                  <div *ngIf="p.birthDate.errors.required">Birth Date is required</div>
+            <div class="card-body p-5">
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Username</label>
+                <input type="text" formControlName="username" placeholder="Username"
+                  class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': p.username.touched && p.username.errors, 'is-valid': p.username.valid }"
+                  required />
+                <div *ngIf="validation && p.username.errors" class="invalid-feedback">
+                  <div *ngIf="p.username.errors.required">Username is required</div>
                 </div>
               </div>
-              <!-- <input type="text" formControlName="birthDate" placeholder="Birth Date"
-                class="form-control form-control-lg" /> -->
-
-            </div>
-            <div class="form-outline mb-4">
-              <label>Basic Salary</label>
-              <input type="number" formControlName="basicSalary" placeholder="Basic Salary"
-                class="form-control form-control-lg" />
-              <div *ngIf="validation && p.basicSalary.errors" class="alert">
-                <div *ngIf="p.basicSalary.errors.required">Basic Salary is required</div>
-              </div>
-            </div>
-            <div class="form-outline mb-4">
-              <label>Status</label>
-              <input type="text" formControlName="status" placeholder="Status" class="form-control form-control-lg" />
-              <div *ngIf="validation && p.status.errors" class="alert">
-                <div *ngIf="p.status.errors.required">Status is required</div>
-              </div>
-            </div>
-            <div class=" mb-4">
-              <label>Group</label>
-              <ng-select [items]="groupOption" bindLabel="name" placeholder="Select Group" formControlName="group">
-              </ng-select>
-              <!-- <input type="text" formControlName="group" placeholder="Group" class="form-control form-control-lg" /> -->
-              <div *ngIf="validation && p.group.errors" class="alert">
-                <div *ngIf="p.group.errors.required">Group is required</div>
-              </div>
-            </div>
-            <div class="form-outline mb-4">
-              <label>Description</label>
-
-              <div class="form-group mt-1">
-                <div class="input-group my-2">
-                  <span class="input-group-text bg-transparent"><i class="far fa-calendar"></i></span>
-                  <input type="text" formControlName="description" class="form-control form-control-lg"
-                  placeholder="DD-MM-YYYY" ngbDatepicker #descriptionDatePicker="ngbDatepicker"
-                  (click)="descriptionDatePicker.toggle()" />
-                   
-                </div>
-                <div *ngIf="validation && p.description.errors" class="alert">
-                  <div *ngIf="p.description.errors.required">Description is required</div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">First Name</label>
+                <input type="text" formControlName="firstName" placeholder="First Name"
+                  class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': p.firstName.touched && p.firstName.errors, 'is-valid': p.firstName.valid }"
+                  required />
+                <div *ngIf="validation && p.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="p.firstName.errors.required">First Name is required</div>
                 </div>
               </div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Last Name</label>
+                <input type="text" formControlName="lastName" placeholder="Last Name"
+                  class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': p.lastName.touched && p.lastName.errors, 'is-valid': p.lastName.valid }"
+                  required />
+                <div *ngIf="validation && p.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="p.lastName.errors.required">Last Name is required</div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Email</label>
+                <input type="email" formControlName="email" placeholder="Email" class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': p.email.touched && p.email.errors, 'is-valid': p.email.valid }" required />
+                <div *ngIf="validation && p.email.errors" class="invalid-feedback">
+                  <div *ngIf="p.email.errors.required">Email is required</div>
+                  <div *ngIf="p.email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Birth Date</label>
+                <div class="form-group mt-1">
+                  <div class="input-group my-2">
+                    <span class="input-group-text bg-transparent"><i class="far fa-calendar"></i></span>
+                    <input type="text" formControlName="birthDate" [maxDate]="maxStartDate"
+                      class="form-control form-control-lg" placeholder="DD-MM-YYYY" ngbDatepicker
+                      #startDatePicker="ngbDatepicker" (click)="startDatePicker.toggle()"
+                      [ngClass]="{ 'is-invalid': p.birthDate.touched && p.birthDate.errors, 'is-valid': p.birthDate.valid }"
+                      required />
+                  </div>
+                  <div *ngIf="validation && p.birthDate.errors" class="invalid-feedback">
+                    <div *ngIf="p.birthDate.errors.required">Birth Date is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Basic Salary</label>
+                <input type="number" formControlName="basicSalary" placeholder="Basic Salary"
+                  class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': p.basicSalary.touched && p.basicSalary.errors, 'is-valid': p.basicSalary.valid }"
+                  required />
+                <div *ngIf="validation && p.basicSalary.errors" class="invalid-feedback">
+                  <div *ngIf="p.basicSalary.errors.required">Basic Salary is required</div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Status</label>
+                <input type="text" formControlName="status" placeholder="Status" class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': p.status.touched && p.status.errors, 'is-valid': p.status.valid }"
+                  required />
+                <div *ngIf="validation && p.status.errors" class="invalid-feedback">
+                  <div *ngIf="p.status.errors.required">Status is required</div>
+                </div>
+              </div>
+              <div class=" mb-4">
+                <label class="fw-bold">Group</label>
+                <ng-select [items]="groupOption" bindLabel="name" placeholder="Select Group" formControlName="group"
+                  [ngClass]="{ 'is-invalid': p.group.touched && p.group.errors, 'is-valid': p.group.valid }">
+                </ng-select>
+                <div *ngIf="validation && p.group.errors" class="invalid-feedback">
+                  <div *ngIf="p.group.errors.required">Group is required</div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="fw-bold">Description</label>
 
+                <div class="form-group mt-1">
+                  <div class="input-group my-2">
+                    <span class="input-group-text bg-transparent"><i class="far fa-calendar"></i></span>
+                    <input type="text" formControlName="description" class="form-control form-control-lg"
+                      placeholder="DD-MM-YYYY" ngbDatepicker #descriptionDatePicker="ngbDatepicker"
+                      (click)="descriptionDatePicker.toggle()"
+                      [ngClass]="{ 'is-invalid': p.description.touched && p.description.errors, 'is-valid': p.description.valid }"
+                      required />
 
+                  </div>
+                  <div *ngIf="validation && p.description.errors" class="invalid-feedback">
+                    <div *ngIf="p.description.errors.required">Description is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" type="button" (click)="back()"><i
+                    class="fa fa-arrow-circle-left"></i> Back</button>
+                <button class="btn btn-primary" type="button" (click)="save()"><i class="fa fa-save"></i> Save</button>
+              </div>
             </div>
-            <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="save()">Save</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </form>

@@ -19,7 +19,7 @@ export class EmployeeListComponent implements OnInit {
   public currentPage: any = 1 /* Current page Active */
   public totalItems: any;
   public itemsPerPage: any = 10
-
+  public dataPaginationperPage: any;
   public searchEmployee: any = ''
   public employeeSelected: any;
 
@@ -60,6 +60,7 @@ export class EmployeeListComponent implements OnInit {
 
   pageChanged() {
     this.employeeList = JSON.parse(localStorage.getItem('employeeList') || '{}').map((data:any, i:any) => ({id: i+1, ...data})).slice((this.currentPage - 1) * this.itemsPerPage, (this.currentPage - 1) * this.itemsPerPage + this.itemsPerPage);
+    this.dataPaginationperPage = this.employeeList.length
   }
 
   search(event: any) {
